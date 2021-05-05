@@ -4,6 +4,12 @@
 - SAP SuccessFactors
 - DocuSign
 
+## Enablement of Kyma Runtime
+
+Prerequisite on Business Technology Platform is the Kyma Runtime. As the entire uses case is based on Kyma,
+make sure that it is enabled on your BTP sub-account, or in the trial landscape.
+User should be an administrator on BTP for the Global Account where changes are taking place.
+An SAP Sales Cloud tenant is required as well.
 
 ## SAP SuccessFactors System Registration
 To connect to a SAP SuccessFactors system we first have to register it on the SAP BTP global account.
