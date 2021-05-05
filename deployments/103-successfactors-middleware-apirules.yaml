@@ -22,6 +22,6 @@ spec:
         - POST
       path: /webhook/docusign
   service:
-    host: successfactors-middleware.c-217dbc8.kyma.shoot.live.k8s-hana.ondemand.com
+    host: successfactors-middleware.c-XXXXXXXX.kyma.shoot.live.k8s-hana.ondemand.com
     name: successfactors-middleware
     port: 80

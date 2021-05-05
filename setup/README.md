@@ -302,12 +302,17 @@ Go to deployment folder and replace following lines into files:
       DOCU_SIGN_API_PRIVATE_KEY: <base64 encoded of DocuSign early saved private key> // Received Private Key should be formated as a single string line, space should be used as separator
     ```
 
+* Update following file content <code>103-successfactors-middleware-apirules.yaml</code>
+    ```bash
+      Replace 'XXXXXXXX' - with Kyma environment code
+    ```
+
 ### Deployment
 * Apply on Kubernetes the manifest files
 
   ```bash
-    kubectl apply -n default -f ./prep/
-    kubectl apply -n default -f ./
+    kubectl apply -n default -f ./deployments/prep/
+    kubectl apply -n default -f ./deployments/
   ```
 
 ### Secure the WebHook Endpoints

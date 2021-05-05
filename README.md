@@ -25,9 +25,7 @@ Required tenant for following systems:
 
 
 ## Guidelines
-
-* [End to End Integration](./setup).
-* [Components Deployments](./deployments)
+* [End to End Integration](./setup)
 
 ## Known Issues
 No known issues at this moment.
