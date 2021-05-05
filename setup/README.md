@@ -333,3 +333,7 @@ WebHook Endpoint used to receive events from SAP SuccessFactors should be secure
 - Select created OAuth Client and click the <code>Decode</code> button, and collect the decoded Scope, ClientId & Client Secret.
   As Token Endpoint, this format should be used: https://oauth2.X-XXXXXX.kyma.shoot.live.k8s-hana.ondemand.com/oauth2/token
   Will require to be used on SAP SuccessFactors for Event Notification Authentication.
+
+## Trigger Execution Flow
+
+Navigate to SAP SuccessFactors, lookup for a candidate adn change the job title.
