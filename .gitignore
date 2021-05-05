@@ -1,0 +1,30 @@
+# CAP CPAppDevelopment-app
+_out
+*.db
+gen/
+node_modules/
+target/
+
+# Web IDE, App Studio
+.che/
+.gen/
+
+# MTA
+*_mta_build_tmp
+*.mtar
+mta_archives/
+
+# Other
+.DS_Store
+*.orig
+*.log
+
+# added by cds deploy
+.env
+
+*.iml
+srv/external
+
+# IDEs
+.vscode
+.idea

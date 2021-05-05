@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: successfactors-middleware
+  labels:
+    app: successfactors-middleware
+    service: successfactors-middleware
+spec:
+  type: ClusterIP
+  #ClusterIP: None   # for Headless Services
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: successfactors-middleware

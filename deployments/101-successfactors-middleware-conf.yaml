@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: successfactors-middleware-config
+data:
+  sf_url: "https://apisalesdemo2.successfactors.eu"
+  docu_sign_signer_email: "n.nicora@sap.com"
+  docu_sign_signer_name: "Nicolae Nicora"
+  docu_sign_base_url: "https://demo.docusign.net/restapi"
+  docu_sign_ouath_base_url: "account-d.docusign.com"
+  docu_sign_ouath_scopes: "signature impersonation"
+  docu_sign_template_id: "dc69433b-8886-4a32-b3f2-4b8e93d8c222"
+  docu_sign_account_id: "022d968e-5d22-42a3-95bc-9724d0a66703"
+  docu_sign_api_integration_key: "fc6851eb-e7ed-4689-ba65-652d2a271ad3"
+  docu_sign_api_user_id: "6cbea6de-3593-4423-ba36-1f27da379c07"
+  em_queue: "jobtitleupdate"
+  em_name: "successfactors"

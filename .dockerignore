@@ -1,0 +1,9 @@
+gen
+node_modules
+docker-compose.yaml
+.cfignore
+.npmignore
+.env
+VERSION
+Makefile
+Dockerfile

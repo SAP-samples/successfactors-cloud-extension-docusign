@@ -1,0 +1,9 @@
+test
+coverage
+npm-debug.log
+debug.log
+.gitignore
+.jsbeautifyrc
+.jshintrc
+.vscode
+.xmake.cfg

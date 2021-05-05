@@ -1,0 +1,110 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: successfactors-middleware
+  labels:
+    app: successfactors-middleware
+    version: v1
+spec:
+  revisionHistoryLimit: 3
+  replicas: 1
+  selector:
+    matchLabels:
+      app: successfactors-middleware
+      version: v1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+
+  template:
+    metadata:
+      labels:
+        app: successfactors-middleware
+        version: v1
+
+    spec:
+      imagePullSecrets:
+        - name: regsecret
+
+#      volumes:
+#        - name: application-config
+#          configMap:
+#            name: successfactors-middleware-config
+#            items:
+#              - key: default-env.json
+#                path: default-env.json
+
+      containers:
+      - name: successfactors-middleware
+        image: ticid.docker.repositories.sap.ondemand.com/uc/successfactors-middleware:0.0.10
+        imagePullPolicy: Always
+
+#        volumeMounts:
+#          - name: application-config
+#            mountPath: /usr/src/app
+#            readOnly: true
+        envFrom:
+          - configMapRef:
+              name: successfactors-middleware-config
+
+        env:
+        - name: PORT
+          value: "8080"
+
+        - name: sf_username
+          valueFrom:
+            secretKeyRef:
+              name: successfactors-middleware-secret
+              key: SF_USERNAME
+        - name: sf_password
+          valueFrom:
+            secretKeyRef:
+              name: successfactors-middleware-secret
+              key: SF_PASSWORD
+        - name: docu_sign_api_private_key
+          valueFrom:
+            secretKeyRef:
+              name: successfactors-middleware-secret
+              key: DOCU_SIGN_API_PRIVATE_KEY
+
+        ports:
+          - containerPort: 8080
+            protocol: TCP
+            name: http
+
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "1024Mi"
+          limits:
+            cpu: "500m"
+            memory: "1024Mi"
+
+        readinessProbe:
+          failureThreshold: 2
+          initialDelaySeconds: 20
+          periodSeconds: 5
+          successThreshold: 1
+          httpGet:
+            path: /healthz
+            port: 8080
+            scheme: HTTP
+          timeoutSeconds: 8
+
+        livenessProbe:
+          failureThreshold: 4
+          initialDelaySeconds: 20
+          periodSeconds: 5
+          successThreshold: 1
+          httpGet:
+            path: /healthz
+            port: 8080
+            scheme: HTTP
+          timeoutSeconds: 8
+
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 10
+

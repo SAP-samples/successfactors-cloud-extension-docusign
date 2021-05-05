@@ -1,0 +1,27 @@
+---
+apiVersion: gateway.kyma-project.io/v1alpha1
+kind: APIRule
+metadata:
+  name: successfactors-middleware
+spec:
+  gateway: kyma-gateway.kyma-system.svc.cluster.local
+  rules:
+    - accessStrategies:
+        - config:
+            required_scope:
+              - read
+              - write
+          handler: oauth2_introspection
+      methods:
+        - POST
+      path: /webhook/success-factors
+    - accessStrategies:
+        - config: {}
+          handler: noop
+      methods:
+        - POST
+      path: /webhook/docusign
+  service:
+    host: successfactors-middleware.c-217dbc8.kyma.shoot.live.k8s-hana.ondemand.com
+    name: successfactors-middleware
+    port: 80
