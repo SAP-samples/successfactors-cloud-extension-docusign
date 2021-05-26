@@ -74,71 +74,6 @@ After creating the SuccessFactors System we are now able to create an entitlemen
    To benefit out of SAP SuccessFactors API,  bind your application to created instance and all SAP SuccessFactors
    credentials will be accessible as environment variables.
 
-## SAP SuccessFactors Event Notifications
-
-SAP SuccessFactors allow subscriptions to different events coming as result of different operations on the system.
-Following steps are required to have a subscription to <code>Job Title Update</code> events as per our PoC.
-
-1. Login SAP SuccessFactors using admin tenant account.
-
-
-2. Navigate to <code>Admin Center</code>
-
-   ![Event Notification](./images/sf-6.png)
-
-3. Current PoC has implemented push events mechanism over WebHook.
-
-    - WebHook configuration, follow the steps of [Push Event using WebHook](#push-event-using-webhook)
-
-### Push Event using WebHook
-
-Here we will cover the SAP SuccessFactors WebHook configuration, which will push event to out PoC.
-Current PoC does expose a REST Endpoint <code>POST /webhook/success-factors</code> where the events will push to:
-
-1. On <code>Tools</code> searching bar, look for <code>Event Notification Subscription</code>
-
-   ![Event Notification](./images/sf-7.png)
-
-2. Create a new Subscriber under <code>Subscriber</code> tab if not exist already,
-   by clicking <code>Edit Subscriber</code> then <code>+ Add Subscriber</code>.
-
-   ![Event Notification](./images/sf-8.png)
-
-   ![Event Notification](./images/sf-9.png)
-   Replace Example Subscribe Id, Name, Group & Client Id with some unique and meaningful names.
-   Click the button <code>Save</code>.
-
-
-3. Navigate to <code>SEB External Event</code> tab & click the <code>+ Add Topic</code> button.
-
-   ![Event Notification](./images/sf-12.png)
-
-    * Form list select the event to which you want to subscribe to, select the event <code>Change in Job Title</code>.
-      Click the button <code>Save</code>.
-
-      ![Event Notification](./images/sf-11.png)
-
-    * Click the button <code>+ Add Subscription</code>. After full-filing all information click the button <code>Save</code>.
-
-      ![Event Notification](./images/sf-12.png)
-
-    - For column SEB Event Type - <i>Select <code>External Event Alert</code>from the list</i>
-    - For column Endpoint Url - <i>Introduce your public URL endpoint of your microservice,
-      to which events will be pushed using HTTP POST method</i>.
-      For instance: https://successfactors-middleware.c-XXXXXX.kyma.shoot.live.k8s-hana.ondemand.com/webhook/success-factors
-    - For column Subscriber - <i>Select early created subscriber under <code>Subscriber</code>tab</i>
-    - For column Authentication - <i>Client on provided link, and select authentication method</i>
-
-      ![Event Notification](./images/sf-13.png)
-
-      We will choose <code>OAuth2 Client Credentials Grant</code>
-
-      ![Event Notification](./images/sf-14.png)
-
-      Full-fill all OAuth2 credentials used to protect your microservice public URL endpoint.
-      All fields values should be collected from Kyma Dashboard under <code>OAuth Clients</code> left menu,
-      only after deploying the application, see the of [application configuration](#application-configurations).
-
 ## DocuSign
 As was already stated early, you should have a ready DocuSign account.
 
@@ -284,17 +219,22 @@ Go to deployment folder and use <code>DocuSignTemplates_Job Title Updated.zip</c
 
 ## Application Configurations
 
-Clone locally the [source code](https://github.tools.sap/btp-use-case-factory/successfactors-docusign-extension).
-Go to deployment folder and replace following lines into files:
+Clone locally the repo.
+```bash
+    git clone https://github.com/SAP-samples/successfactors-cloud-extension-docusign.git
+    cd successfactors-cloud-extension-docusign
+```
+
+Go to deployments folder and replace following lines into files:
 
 * Update following file content <code>101-successfactors-middleware-conf.yaml</code>
     ```bash
       sf_url: "https://apisalesdemo2.successfactors.eu" // API endpoint of your SuccessFactors account
       docu_sign_signer_email: "<your email>" // Your Name 
       docu_sign_signer_name: "<your full name>" // Your Email Address 
-      docu_sign_base_url: "https://demo.docusign.net/restapi" // Base Url of DocuSign account
-      docu_sign_ouath_base_url: "account-d.docusign.com" // OAuth Base Url of your DocuSign account
-      docu_sign_ouath_scopes: "signature impersonation" // OAuth Scopes
+      docu_sign_base_url: "https://demo.docusign.net/restapi" // Base Url of DocuSign account, should be changed to production
+      docu_sign_ouath_base_url: "account-d.docusign.com" // OAuth Base Url of your DocuSign account, should be changed to production
+      docu_sign_ouath_scopes: "signature impersonation" // OAuth Scopes, should be collected from DocuSign App integration
       docu_sign_template_id: "dc69433b-8886-4a32-b3f2-4b8e93d8c222"  // ID of your DocuSign template
       docu_sign_account_id: "022d968e-5d22-42a3-95bc-9724d0a66703"   // Collected During after getting the Docusign Account
       docu_sign_api_integration_key: "7f511a91-c3e0-4050-91db-cde40620fe4a" // Collected once done the Integration
@@ -340,6 +280,84 @@ WebHook Endpoint used to receive events from SAP SuccessFactors should be secure
   As Token Endpoint, this format should be used: https://oauth2.X-XXXXXX.kyma.shoot.live.k8s-hana.ondemand.com/oauth2/token
   Will require to be used on SAP SuccessFactors for Event Notification Authentication.
 
+
+## SAP SuccessFactors Event Notifications
+
+SAP SuccessFactors allow subscriptions to different events coming as result of different operations on the system.
+Following steps are required to have a subscription to <code>Job Title Update</code> events as per our PoC.
+
+1. Login SAP SuccessFactors using admin tenant account.
+
+
+2. Navigate to <code>Admin Center</code>
+
+   ![Event Notification](./images/sf-6.png)
+
+3. Current PoC has implemented push events mechanism over WebHook.
+
+    - WebHook configuration, follow the steps of [Push Event using WebHook](#push-event-using-webhook)
+
+### Push Event using WebHook
+
+Here we will cover the SAP SuccessFactors WebHook configuration, which will push event to out PoC.
+Current PoC does expose a REST Endpoint <code>POST /webhook/success-factors</code> where the events will push to:
+
+1. On <code>Tools</code> searching bar, look for <code>Event Notification Subscription</code>
+
+   ![Event Notification](./images/sf-7.png)
+
+2. Create a new Subscriber under <code>Subscriber</code> tab if not exist already,
+   by clicking <code>Edit Subscriber</code> then <code>+ Add Subscriber</code>.
+
+   ![Event Notification](./images/sf-8.png)
+
+   ![Event Notification](./images/sf-9.png)
+   Replace Example Subscribe Id, Name, Group & Client Id with some unique and meaningful names.
+   Click the button <code>Save</code>.
+
+
+3. Navigate to <code>SEB External Event</code> tab & click the <code>+ Add Topic</code> button.
+
+   ![Event Notification](./images/sf-12.png)
+
+    * Form list select the event to which you want to subscribe to, select the event <code>Change in Job Title</code>.
+      Click the button <code>Save</code>.
+
+      ![Event Notification](./images/sf-11.png)
+
+    * Click the button <code>+ Add Subscription</code>. After full-filing all information click the button <code>Save</code>.
+
+      ![Event Notification](./images/sf-12.png)
+
+    - For column SEB Event Type - <i>Select <code>External Event Alert</code>from the list</i>
+    - For column Endpoint Url - <i>Introduce your public URL endpoint of your microservice,
+      to which events will be pushed using HTTP POST method</i>.
+      For instance: https://successfactors-middleware.c-XXXXXX.kyma.shoot.live.k8s-hana.ondemand.com/webhook/success-factors
+    - For column Subscriber - <i>Select early created subscriber under <code>Subscriber</code>tab</i>
+    - For column Authentication - <i>Client on provided link, and select authentication method</i>
+
+      ![Event Notification](./images/sf-13.png)
+
+      We will choose <code>OAuth2 Client Credentials Grant</code>
+
+      ![Event Notification](./images/sf-14.png)
+
+      Full-fill all OAuth2 credentials used to protect your microservice public URL endpoint.
+      All fields values should be collected from Kyma Dashboard under <code>OAuth Clients</code> left menu,
+      only after deploying the application.
+      
+      - For Client Id field collect it from Kyma Dashboard under <code>OAuth Clients</code>
+      - For Client Secret field collect it from Kyma Dashboard under <code>OAuth Clients</code>
+      - For Token Endpoint should have the pattern link <code>https://oauth2.<kyma domain name>/oauth2/token</code>
+        For instance: <code>https://oauth2.c-5517609.kyma.shoot.live.k8s-hana.ondemand.com/oauth2/token</code>
+      - For Scope field - collect it from Kyma Dashboard under <code>APIRules</code> for <code>successfactors-middleware</code>
+        out of <code>/webhook/success-factors</code> strategy.
+
 ## Trigger Execution Flow
 
-Navigate to SAP SuccessFactors, lookup for a candidate adn change the job title.
+* Navigate to SAP SuccessFactors, lookup for a candidate and change the job title.
+* Using K8S command line tool <code>kubectl logs <pod name> successfactors-middleware </code> see the logs, you should see 
+  that the event was received
+* On success event processing the person whose job title has changed should receive emails with an link to DocuSign 
+  link in order to sign electronically.
+* After signing the document, waiting some minutes over email will be sent a copy of signed document  
