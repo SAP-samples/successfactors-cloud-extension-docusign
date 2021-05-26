@@ -188,10 +188,16 @@ Event notification will give possible to receive different events after doing op
   At the end <code>Save</code> the changes.
 
 ### Templates on DocuSign
-DocuSign is operating with templates, which the application will full fill the information and sent to signer.
+DocuSign is operating with templates, which the application will full-fill the information and sent to signer.
 
-Clone locally the [source code](https://github.tools.sap/btp-use-case-factory/successfactors-docusign-extension).
-Go to deployment folder and use <code>DocuSignTemplates_Job Title Updated.zip</code> file as template.
+Clone locally the repo if you didn't yet.
+```bash
+    git clone https://github.com/SAP-samples/successfactors-cloud-extension-docusign.git
+    cd successfactors-cloud-extension-docusign
+
+```
+
+Go to deployments folder and use <code>DocuSignTemplates_Job Title Updated.zip</code> file as template.
 
 * Navigate to <code>Templates</code>
 
@@ -219,10 +225,11 @@ Go to deployment folder and use <code>DocuSignTemplates_Job Title Updated.zip</c
 
 ## Application Configurations
 
-Clone locally the repo.
+Clone locally the repo if you didn't yet.
 ```bash
     git clone https://github.com/SAP-samples/successfactors-cloud-extension-docusign.git
     cd successfactors-cloud-extension-docusign
+    cd deployments
 ```
 
 Go to deployments folder and replace following lines into files:
