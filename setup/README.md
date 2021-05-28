@@ -6,8 +6,8 @@
 
 ## Enablement of Kyma Runtime
 
-Prerequisite on Business Technology Platform is the Kyma Runtime. As the entire uses case is based on Kyma,
-make sure that it is enabled on your BTP sub-account, or in the trial landscape.
+Prerequisite on SAP Business Technology Platform is the Kyma runtime. As the entire uses case is based on Kyma,
+make sure that it is enabled on your SAP BTP subaccount, or in the trial landscape.
 User should be an administrator on BTP for the Global Account where changes are taking place.
 An SAP Sales Cloud tenant is required as well.
 
@@ -47,7 +47,7 @@ To connect to a SAP SuccessFactors system we first have to register it on the SA
 
 After creating the SuccessFactors System we are now able to create an entitlement for the SuccessFactors Extensibility service.
 
-1. In your SAP Business Technology Platform sub-account select Entitlements. Click on Configure Entitlements and then on Add Service Plans.
+1. In your SAP Business Technology Platform subaccount select Entitlements. Click on Configure Entitlements and then on Add Service Plans.
 
    ![Register SF System](./images/scp-5.png)
    ![Register SF System](./images/scp-6.png)
