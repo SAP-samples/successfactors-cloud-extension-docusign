@@ -1,4 +1,4 @@
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/cloud-extension-successfactors-docusign)](https://api.reuse.software/info/github.com/SAP-samples/cloud-extension-successfactors-docusign)
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/successfactors-cloud-extension-docusign)](https://api.reuse.software/info/github.com/SAP-samples/successfactors-cloud-extension-docusign)
 
 # SAP SuccessFactors Extension using DocuSign
 Welcome to the SAP Business Technology Platform "SuccessFactors Extension", integrated with DocuSign
