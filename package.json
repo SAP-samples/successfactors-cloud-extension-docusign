@@ -27,7 +27,7 @@
     "parse-fn-args": "^1.0.1",
     "log4js": "^6.4.0",
     "dotenv": "^8.2.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "xml-js": "^1.6.11",
     "docusign-esign": "^5.8.1",
     "uuid": "^8.3.2",
