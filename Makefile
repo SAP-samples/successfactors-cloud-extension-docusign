@@ -1,5 +1,5 @@
 APP=successfactors-middleware
-DOCKER_URL:=ticid.docker.repositories.sap.ondemand.com/uc/$(APP)
+DOCKER_URL:=<your docker repo>/$(APP)
 DOCKER_TAG=$(shell cat VERSION)
 
 .PHONY: all dev image image-push

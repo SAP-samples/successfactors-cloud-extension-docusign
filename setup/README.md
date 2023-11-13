@@ -271,6 +271,8 @@ Go to deployments folder and replace following lines into files:
 ### Secure the WebHook Endpoints
 WebHook Endpoint used to receive events from SAP SuccessFactors should be secured with OAuth2.
 
+The instructions below have been superseded by [updated guidance for using Istio](https://blogs.sap.com/2023/06/06/sap-btp-kyma-runtime-ory-hydra-oauth2-client-migration/)
+
 - Navigate to Kyma Dashboard, on <code>OAuth Clients</code> left menu.
 
   ![Kyma OAuth2](./images/kyma-4.png)

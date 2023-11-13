@@ -1,4 +1,7 @@
-FROM node:12-alpine
+# for PC
+# FROM node:12-alpine
+# for Mac
+FROM --platform=linux/amd64 node:12-alpine
 
 # Create app directory
 WORKDIR /usr/src/app
